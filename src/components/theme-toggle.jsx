@@ -6,7 +6,6 @@ export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   return (
     <>
-      {console.log(theme)}
       <Button
         onClick={() => {
           theme === "dark" ? setTheme("light") : setTheme("dark");
