@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function Home() {
   return (
@@ -12,7 +13,13 @@ export default function Home() {
           <Switch id="syntax" />
         </div>
       </div>
-      <div>Code Area</div>
+      {/* Add code editor later */}
+      <div className="p-4">
+        <Textarea
+          placeholder="Awesome code goes here..."
+          className="min-h-96"
+        />
+      </div>
       <div className="flex flex-row justify-end space-x-4 p-4">
         <Button>Expire after</Button>
         <Button>Paste snippet</Button>
