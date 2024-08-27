@@ -1,3 +1,4 @@
+import LanguageSelector from "@/components/language-selector";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -7,7 +8,7 @@ export default function Home() {
   return (
     <>
       <div className="justify-between space-y-4 p-4 sm:flex sm:flex-row">
-        <Button>Language</Button>
+        <LanguageSelector />
         <div className="flex items-center space-x-2">
           <Label htmlFor="syntax">Syntax Highlighting</Label>
           <Switch id="syntax" />
