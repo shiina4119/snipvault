@@ -1,7 +1,16 @@
+import { ThemeProvider } from "./theme-provider";
+
 export default function Layout({ children }) {
   return (
     <>
-      <main>{children}</main>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <main>{children}</main>
+      </ThemeProvider>
     </>
   );
 }
