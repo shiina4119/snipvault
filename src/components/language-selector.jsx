@@ -13,7 +13,7 @@ import { languages } from "@/lib/languages";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
-export default function LanguageSelector() {
+export default function LanguageSelector({ setLang }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   return (
@@ -42,7 +42,7 @@ export default function LanguageSelector() {
                   key={language.value}
                   value={language.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    setLang(currentValue);
                     setOpen(false);
                   }}
                 >
