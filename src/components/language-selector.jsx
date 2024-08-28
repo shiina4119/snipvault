@@ -43,6 +43,7 @@ export default function LanguageSelector({ setLang }) {
                   value={language.value}
                   onSelect={(currentValue) => {
                     setLang(currentValue);
+                    setValue(currentValue);
                     setOpen(false);
                   }}
                 >
