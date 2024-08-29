@@ -1,5 +1,6 @@
 import Navbar from "./navbar";
 import { ThemeProvider } from "./theme-provider";
+import { Toaster } from "./ui/toaster";
 
 export default function Layout({ children }) {
   return (
@@ -12,6 +13,7 @@ export default function Layout({ children }) {
       >
         <Navbar />
         <main>{children}</main>
+        <Toaster />
       </ThemeProvider>
     </div>
   );

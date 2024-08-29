@@ -17,6 +17,7 @@ export default function Snip() {
           onClick={() => {
             toast({
               title: "Link copied!",
+              description: "Snippet link has been copied to the clipboard.",
             });
           }}
         >
