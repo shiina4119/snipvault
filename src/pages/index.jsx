@@ -8,7 +8,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function Home() {
-  const [lang, setLang] = useState("text");
+  const [lang, setLang] = useState("");
   const [syntax, setSyntax] = useState(false);
   const [expiry, setExpiry] = useState(0);
   const [code, setCode] = useState("");
@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <>
       <div className="justify-between space-y-4 p-4 sm:flex sm:flex-row">
-        <LanguageSelector setLang={setLang} />
+        <LanguageSelector lang={lang} setLang={setLang} />
         <div className="flex items-center space-x-2">
           <Label htmlFor="syntax">Syntax Highlighting</Label>
           <Switch id="syntax" onCheckedChange={() => setSyntax(!syntax)} />

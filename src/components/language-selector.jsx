@@ -13,9 +13,8 @@ import { languages } from "@/lib/languages";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
-export default function LanguageSelector({ setLang }) {
+export default function LanguageSelector({ lang, setLang }) {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -25,8 +24,8 @@ export default function LanguageSelector({ setLang }) {
           aria-expanded={open}
           className="w-48 justify-between"
         >
-          {value
-            ? languages.find((language) => language.value === value)?.label
+          {lang
+            ? languages.find((language) => language.value === lang)?.label
             : "Select language..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -43,7 +42,6 @@ export default function LanguageSelector({ setLang }) {
                   value={language.value}
                   onSelect={(currentValue) => {
                     setLang(currentValue);
-                    setValue(currentValue);
                     setOpen(false);
                   }}
                 >
@@ -51,7 +49,7 @@ export default function LanguageSelector({ setLang }) {
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      value === language.value ? "opacity-100" : "opacity-0",
+                      lang === language.value ? "opacity-100" : "opacity-0",
                     )}
                   />
                 </CommandItem>
