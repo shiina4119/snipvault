@@ -16,11 +16,11 @@ export default function ExpiryDropdown({ expiry, setExpiry }) {
         <SelectValue placeholder="Expire after..." />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="600">10 minutes</SelectItem>
-        <SelectItem value="3600">1 hour</SelectItem>
-        <SelectItem value="21600">6 hours</SelectItem>
-        <SelectItem value="86400">24 hours</SelectItem>
-        <SelectItem value="0">Never</SelectItem>
+        <SelectItem value={600000}>10 minutes</SelectItem>
+        <SelectItem value={3600000}>1 hour</SelectItem>
+        <SelectItem value={21600000}>6 hours</SelectItem>
+        <SelectItem value={86400000}>24 hours</SelectItem>
+        <SelectItem value={0}>Never</SelectItem>
       </SelectContent>
     </Select>
   );
