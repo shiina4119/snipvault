@@ -4,4 +4,5 @@ export const languages = [
   { label: "Python 3", value: "python3" },
   { label: "Go", value: "go" },
   { label: "Rust", value: "rust" },
+  { label: "Plain Text", value: "text" },
 ];
