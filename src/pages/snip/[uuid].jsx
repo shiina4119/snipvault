@@ -57,7 +57,6 @@ export default function Page() {
   if (!loading && data.result === null) {
     return (
       <div className="flex h-screen items-center justify-center">
-        {console.log(data)}
         <h4 className="scroll-m-20 text-xl tracking-tight text-muted-foreground">
           Snippet does not exist.
         </h4>
