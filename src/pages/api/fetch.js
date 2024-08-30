@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
       if (
         result !== null &&
-        result.creationTime !== result.expiry &&
+        Date.parse(result.expiry) &&
         Date.now() > Date.parse(result.expiry)
       ) {
         await prisma.snippet.delete({

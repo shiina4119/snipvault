@@ -11,7 +11,7 @@ export default async function handler(req, res) {
         lang: data.lang,
         code: data.code,
         creationTime: new Date(y),
-        expiry: new Date(y + data.expiry),
+        expiry: new Date(data.expiry ? y + data.expiry : 0),
       },
     });
     res.status(200).json({ message: "Snippet received", result: result });

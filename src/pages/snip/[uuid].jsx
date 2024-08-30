@@ -54,6 +54,18 @@ export default function Page() {
     }
   }
 
+  async function handleDelete() {
+    fetch(`/api/delete?id=${uuid}`, { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => {
+        router.push("/");
+        toast({
+          variant: "Destructive",
+          title: data.message,
+        });
+      });
+  }
+
   if (!loading && data.result === null) {
     return (
       <div className="flex h-screen items-center justify-center">
@@ -77,7 +89,9 @@ export default function Page() {
           <ClipboardCopyIcon />
           <div className="text-lg font-semibold">Copy link</div>
         </Button>
-        <Button className="max-w-fit">Delete snippet</Button>
+        <Button className="max-w-fit" onClick={handleDelete}>
+          Delete snippet
+        </Button>
       </div>
       <div className="p-4">
         {loading ? (
