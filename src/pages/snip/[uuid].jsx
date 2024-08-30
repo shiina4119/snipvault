@@ -34,7 +34,7 @@ export default function Page() {
         setData(data);
         isLoading(false);
       });
-  }, []);
+  }, [uuid]);
 
   async function copyToClipboard(content) {
     try {
@@ -54,37 +54,35 @@ export default function Page() {
     }
   }
 
-  if (loading) return <h1>Loading</h1>;
-  else
-    return (
-      <>
-        <div className="flex flex-row justify-between p-4">
-          <Button
-            className="max-w-fit flex-row space-x-4"
-            variant="ghost"
-            onClick={async () => {
-              // TODO: change it to use hostname (set it on .env)
-              await copyToClipboard(`localhost:3000/snip/${uuid}`);
-            }}
-          >
-            <ClipboardCopyIcon />
-            <div className="text-lg font-semibold">Copy link</div>
-          </Button>
-          <Button className="max-w-fit">Delete snippet</Button>
-        </div>
-        <div className="p-4">
-          {loading ? (
-            <Skeleton />
-          ) : (
-            <Textarea className="min-h-96">{data.result.code}</Textarea>
-          )}
-        </div>
-        <div className="flex flex-row justify-between p-4">
-          <p className="text-2xl text-muted-foreground">
-            {loading ? <Skeleton /> : lang(data.result.lang)}
-          </p>
-          <Button onClick={() => router.back()}>New snippet</Button>
-        </div>
-      </>
-    );
+  return (
+    <>
+      <div className="flex flex-row justify-between p-4">
+        <Button
+          className="max-w-fit flex-row space-x-4"
+          variant="ghost"
+          onClick={async () => {
+            // TODO: change it to use hostname (set it on .env)
+            await copyToClipboard(`localhost:3000/snip/${uuid}`);
+          }}
+        >
+          <ClipboardCopyIcon />
+          <div className="text-lg font-semibold">Copy link</div>
+        </Button>
+        <Button className="max-w-fit">Delete snippet</Button>
+      </div>
+      <div className="p-4">
+        {loading ? (
+          <Skeleton />
+        ) : (
+          <Textarea className="min-h-96">{data.result.code}</Textarea>
+        )}
+      </div>
+      <div className="flex flex-row justify-between p-4">
+        <p className="text-2xl text-muted-foreground">
+          {loading ? <Skeleton /> : lang(data.result.lang)}
+        </p>
+        <Button onClick={() => router.back()}>New snippet</Button>
+      </div>
+    </>
+  );
 }
