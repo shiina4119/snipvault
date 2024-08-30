@@ -1,0 +1,4 @@
+- [ ] Add a better code editor/syntax highlighting
+- [ ] Handle delete snippet button
+- [ ] Handle snippet expiration
+- [ ] Add user accounts
