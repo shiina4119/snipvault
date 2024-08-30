@@ -76,7 +76,7 @@ export default function Home() {
           onChange={(e) => setCode(e.target.value)}
         />
         <p className="text-sm text-muted-foreground">
-          Do not enter sensitive information like password or bank account
+          Do not enter sensitive information like passwords or bank account
           details.
         </p>
       </div>

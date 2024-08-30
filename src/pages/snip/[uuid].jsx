@@ -54,6 +54,17 @@ export default function Page() {
     }
   }
 
+  if (!loading && data.result === null) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        {console.log(data)}
+        <h4 className="scroll-m-20 text-xl tracking-tight text-muted-foreground">
+          Snippet does not exist.
+        </h4>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="flex flex-row justify-between p-4">
@@ -61,8 +72,7 @@ export default function Page() {
           className="max-w-fit flex-row space-x-4"
           variant="ghost"
           onClick={async () => {
-            // TODO: change it to use hostname (set it on .env)
-            await copyToClipboard(`localhost:3000/snip/${uuid}`);
+            await copyToClipboard(window.location.href);
           }}
         >
           <ClipboardCopyIcon />
@@ -72,15 +82,19 @@ export default function Page() {
       </div>
       <div className="p-4">
         {loading ? (
-          <Skeleton />
+          <Skeleton className="min-h-96" />
         ) : (
-          <Textarea className="min-h-96">{data.result.code}</Textarea>
+          <Textarea className="min-h-96" defaultValue={data.result.code} />
         )}
       </div>
       <div className="flex flex-row justify-between p-4">
-        <p className="text-2xl text-muted-foreground">
-          {loading ? <Skeleton /> : lang(data.result.lang)}
-        </p>
+        {loading ? (
+          <Skeleton />
+        ) : (
+          <p className="text-2xl text-muted-foreground">
+            {lang(data.result.lang)}
+          </p>
+        )}
         <Button onClick={() => router.back()}>New snippet</Button>
       </div>
     </>
