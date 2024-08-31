@@ -8,10 +8,13 @@ import { useToast } from "@/components/ui/use-toast";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Editor from "react-simple-code-editor";
 import { generate as uuid } from "short-uuid";
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
 
 export default function Home() {
-  const [lang, setLang] = useState("text");
+  const [lang, setLang] = useState("plaintext");
   const [syntax, setSyntax] = useState(false);
   const [expiry, setExpiry] = useState(-1);
   const [code, setCode] = useState("");
@@ -73,12 +76,22 @@ export default function Home() {
           <Switch id="syntax" onCheckedChange={() => setSyntax(!syntax)} />
         </div>
       </div>
-      {/* Add code editor later */}
       <div className="space-y-2 p-4">
-        <Textarea
-          placeholder="Awesome code goes here..."
-          className="min-h-96"
-          onChange={(e) => setCode(e.target.value)}
+        <Editor
+          value={code}
+          onValueChange={(code) => {
+            setCode(code);
+          }}
+          padding={10}
+          highlight={(code) => {
+            if (syntax) return hljs.highlight(code, { language: lang }).value;
+            else return hljs.highlight(code, { language: "plaintext" }).value;
+          }}
+          className="h-fit min-h-96 rounded border"
+          style={{
+            fontFamily: '"Fira code", "Fira Mono", monospace',
+            fontSize: 15,
+          }}
         />
         <p className="text-sm text-muted-foreground">
           Do not enter sensitive information like passwords or bank account

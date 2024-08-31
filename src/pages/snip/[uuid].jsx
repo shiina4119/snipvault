@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { languages } from "@/lib/languages";
 import { ClipboardCopyIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Editor from "react-simple-code-editor";
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
 
 export async function getServerSideProps() {
   return {
@@ -97,7 +99,19 @@ export default function Page() {
         {loading ? (
           <Skeleton className="min-h-96" />
         ) : (
-          <Textarea className="min-h-96" defaultValue={data.result.code} />
+          <Editor
+            value={data.result.code}
+            padding={10}
+            highlight={(code) =>
+              hljs.highlight(code, { language: data.result.lang }).value
+            }
+            className="h-fit min-h-96 rounded border"
+            style={{
+              fontFamily: '"Fira code", "Fira Mono", monospace',
+              fontSize: 15,
+            }}
+            disabled
+          />
         )}
       </div>
       <div className="flex flex-row justify-between p-4">
