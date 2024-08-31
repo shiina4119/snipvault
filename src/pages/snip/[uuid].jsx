@@ -91,7 +91,11 @@ export default function Page() {
           <ClipboardCopyIcon />
           <div className="text-lg font-semibold">Copy link</div>
         </Button>
-        <Button className="max-w-fit" onClick={handleDelete}>
+        <Button
+          variant="destructive"
+          className="max-w-fit"
+          onClick={handleDelete}
+        >
           Delete snippet
         </Button>
       </div>
