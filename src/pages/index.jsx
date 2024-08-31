@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { generate as uuid } from "short-uuid";
@@ -14,16 +15,19 @@ export default function Home() {
   const [syntax, setSyntax] = useState(false);
   const [expiry, setExpiry] = useState(-1);
   const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const { toast } = useToast();
 
   async function handlePaste() {
+    setLoading(true);
     if (code === "") {
       toast({
         variant: "destructive",
         title: "Empty snippets not allowed.",
       });
+      setLoading(false);
       return;
     }
     if (expiry === undefined || expiry === -1) {
@@ -31,6 +35,7 @@ export default function Home() {
         variant: "destructive",
         title: "Please set an expiration.",
       });
+      setLoading(false);
       return;
     }
     const id = uuid();
@@ -82,7 +87,10 @@ export default function Home() {
       </div>
       <div className="flex flex-row justify-end space-x-4 p-4">
         <ExpiryDropdown expiry={expiry} setExpiry={setExpiry} />
-        <Button onClick={handlePaste}>Paste snippet</Button>
+        <Button onClick={handlePaste} disabled={loading}>
+          {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+          Paste snippet
+        </Button>
       </div>
     </>
   );
