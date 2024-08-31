@@ -13,7 +13,7 @@ export async function getServerSideProps() {
   };
 }
 
-function lang(langSlug) {
+function getLangLabel(langSlug) {
   for (let l of languages) {
     if (l.value === langSlug) return l.label;
   }
@@ -105,7 +105,7 @@ export default function Page() {
           <Skeleton />
         ) : (
           <p className="text-2xl text-muted-foreground">
-            {lang(data.result.lang)}
+            {getLangLabel(data.result.lang)}
           </p>
         )}
         <Button onClick={() => router.back()}>New snippet</Button>
