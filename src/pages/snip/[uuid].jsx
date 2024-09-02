@@ -9,12 +9,6 @@ import Editor from "react-simple-code-editor";
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
 
-export async function getServerSideProps() {
-  return {
-    props: {},
-  };
-}
-
 function getLangLabel(langSlug) {
   for (let l of languages) {
     if (l.value === langSlug) return l.label;
@@ -30,6 +24,7 @@ export default function Page() {
   const [_, setCopied] = useState(false);
 
   useEffect(() => {
+    const uuid = window.location.pathname.split("/")[2];
     fetch(`/api/fetch?id=${uuid}`, { method: "GET" })
       .then((res) => res.json())
       .then((data) => {
